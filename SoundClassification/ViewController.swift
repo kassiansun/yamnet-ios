@@ -22,6 +22,7 @@ class ViewController: UIViewController {
   private var soundClassifier: SoundClassifier!
   private var bufferSize: Int = 0
   private var probabilities: [Float32] = []
+  private var indices: [Int] = []
 
   // MARK: - View controller lifecycle methods
 
@@ -92,6 +93,10 @@ extension ViewController: SoundClassifierDelegate {
     didInterpreteProbabilities probabilities: [Float32]
   ) {
     self.probabilities = probabilities
+    self.indices = Array(0..<probabilities.count)
+    self.indices = self.indices.sorted(by: {
+          probabilities[$0] > probabilities[$1]
+      })
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }
@@ -110,10 +115,8 @@ extension ViewController: UITableViewDataSource {
       for: indexPath
     ) as? ProbabilityTableViewCell else { return UITableViewCell() }
 
-    cell.label.text = soundClassifier.labelNames[indexPath.row]
-    UIView.animate(withDuration: 0.4) {
-      cell.progressView.setProgress(self.probabilities[indexPath.row], animated: true)
-    }
+    cell.label.text = soundClassifier.labelNames[self.indices[indexPath.row]]
+      cell.progressView.setProgress(self.probabilities[self.indices[indexPath.row]], animated: false)
     return cell
   }
 }

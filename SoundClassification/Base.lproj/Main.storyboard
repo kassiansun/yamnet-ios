@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,31 +17,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tfl2_logo_dark" translatesAutoresizingMaskIntoConstraints="NO" id="lfi-nw-UIF">
-                                <rect key="frame" x="16" y="59.999999999999993" width="174.66666666666666" height="30.666666666666664"/>
+                                <rect key="frame" x="16" y="62.999999999999993" width="174.66666666666666" height="30.666666666666664"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9gB-Zg-0TM">
-                                <rect key="frame" x="0.0" y="114.66666666666669" width="428" height="777.33333333333326"/>
+                                <rect key="frame" x="0.0" y="117.66666666666669" width="428" height="774.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="probabilityCell" id="jad-bN-t9t" customClass="ProbabilityTableViewCell" customModule="SoundClassification" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="59.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="428" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jad-bN-t9t" id="mF2-ck-1r7">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="59.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sma-M2-skP">
-                                                    <rect key="frame" x="20" y="19" width="80" height="21.333333333333329"/>
+                                                    <rect key="frame" x="20" y="19" width="160" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="3jx-1U-YDb"/>
+                                                        <constraint firstAttribute="width" constant="160" id="3jx-1U-YDb"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7f4-Cb-maP">
-                                                    <rect key="frame" x="108" y="27.666666666666668" width="284" height="4"/>
+                                                <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7f4-Cb-maP">
+                                                    <rect key="frame" x="300" y="27.666666666666668" width="92" height="4"/>
                                                 </progressView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,7 +51,7 @@
                                                 <constraint firstItem="Sma-M2-skP" firstAttribute="top" secondItem="mF2-ck-1r7" secondAttribute="topMargin" constant="8" id="CfK-0p-2gm"/>
                                                 <constraint firstItem="7f4-Cb-maP" firstAttribute="centerY" secondItem="mF2-ck-1r7" secondAttribute="centerY" id="RMb-cU-YeY"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Sma-M2-skP" secondAttribute="bottom" constant="8" id="lwc-6p-Ovf"/>
-                                                <constraint firstItem="7f4-Cb-maP" firstAttribute="leading" secondItem="Sma-M2-skP" secondAttribute="trailingMargin" constant="16" id="ulF-KF-OmH"/>
+                                                <constraint firstItem="7f4-Cb-maP" firstAttribute="leading" secondItem="Sma-M2-skP" secondAttribute="trailingMargin" constant="128" id="ulF-KF-OmH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
