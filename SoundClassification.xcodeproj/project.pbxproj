@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		66049BD7077F73C9210873F2 /* Pods_SoundClassification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA70AA685F986DCEB5D61176 /* Pods_SoundClassification.framework */; };
+		8810150C2B25D06C003EED41 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8810150B2B25D06C003EED41 /* labels.txt */; };
 		8841896C2AA1CCCA00BD6AA6 /* yamnet.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 8841896B2AA1CCCA00BD6AA6 /* yamnet.tflite */; };
-		8841896E2AA1CDE300BD6AA6 /* labels.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8841896D2AA1CDE200BD6AA6 /* labels.txt */; };
 		C83B9C82256BB4C000EA2282 /* AudioInputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B9C81256BB4C000EA2282 /* AudioInputManager.swift */; };
 		C83B9C8D256D38DB00EA2282 /* SoundClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B9C8C256D38DB00EA2282 /* SoundClassifier.swift */; };
 		C86E5C9F2525DB8400F53BEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86E5C9E2525DB8400F53BEA /* AppDelegate.swift */; };
@@ -39,8 +39,8 @@
 
 /* Begin PBXFileReference section */
 		5AFAE9051D797536BC360191 /* Pods-SoundClassification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundClassification.release.xcconfig"; path = "Target Support Files/Pods-SoundClassification/Pods-SoundClassification.release.xcconfig"; sourceTree = "<group>"; };
+		8810150B2B25D06C003EED41 /* labels.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = labels.txt; sourceTree = "<group>"; };
 		8841896B2AA1CCCA00BD6AA6 /* yamnet.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = yamnet.tflite; sourceTree = "<group>"; };
-		8841896D2AA1CDE200BD6AA6 /* labels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labels.txt; path = ../../../../Downloads/labels.txt; sourceTree = "<group>"; };
 		8D3C72E2E6452206717A5F8A /* Pods-SoundClassification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundClassification.debug.xcconfig"; path = "Target Support Files/Pods-SoundClassification/Pods-SoundClassification.debug.xcconfig"; sourceTree = "<group>"; };
 		AA70AA685F986DCEB5D61176 /* Pods_SoundClassification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundClassification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B9C81256BB4C000EA2282 /* AudioInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInputManager.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				8841896B2AA1CCCA00BD6AA6 /* yamnet.tflite */,
-				8841896D2AA1CDE200BD6AA6 /* labels.txt */,
+				8810150B2B25D06C003EED41 /* labels.txt */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,8 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86E5CAB2525DB8600F53BEA /* LaunchScreen.storyboard in Resources */,
-				8841896E2AA1CDE300BD6AA6 /* labels.txt in Resources */,
 				C86E5CA82525DB8600F53BEA /* Assets.xcassets in Resources */,
+				8810150C2B25D06C003EED41 /* labels.txt in Resources */,
 				8841896C2AA1CCCA00BD6AA6 /* yamnet.tflite in Resources */,
 				C86E5CA62525DB8400F53BEA /* Main.storyboard in Resources */,
 			);
