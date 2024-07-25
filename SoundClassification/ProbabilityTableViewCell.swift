@@ -15,6 +15,6 @@
 import UIKit
 
 class ProbabilityTableViewCell: UITableViewCell {
-  @IBOutlet weak var label: UILabel!
-  @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
 }

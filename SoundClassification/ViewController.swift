@@ -15,108 +15,108 @@
 import UIKit
 
 class ViewController: UIViewController {
-  // MARK: - Variables
-  @IBOutlet weak var tableView: UITableView!
+    // MARK: - Variables
+    @IBOutlet weak var tableView: UITableView!
 
-  private var audioInputManager: AudioInputManager!
-  private var soundClassifier: SoundClassifier!
-  private var bufferSize: Int = 0
-  private var probabilities: [Float32] = []
-  private var indices: [Int] = []
+    private var audioInputManager: AudioInputManager!
+    private var soundClassifier: SoundClassifier!
+    private var bufferSize: Int = 0
+    private var probabilities: [Float32] = []
+    private var indices: [Int] = []
 
-  // MARK: - View controller lifecycle methods
+    // MARK: - View controller lifecycle methods
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-    tableView.dataSource = self
-    tableView.backgroundColor = .white
-    tableView.tableFooterView = UIView()
+        tableView.dataSource = self
+        tableView.backgroundColor = .white
+        tableView.tableFooterView = UIView()
 
-    soundClassifier = SoundClassifier(modelFileName: "yamnet", delegate: self)
+        soundClassifier = SoundClassifier(modelFileName: "yamnet", delegate: self)
 
-    startAudioRecognition()
-  }
+        startAudioRecognition()
+    }
 
-  // MARK: - Private Methods
+    // MARK: - Private Methods
 
-  /// Initializes the AudioInputManager and starts recognizing on the output buffers.
-  private func startAudioRecognition() {
-    audioInputManager = AudioInputManager(sampleRate: soundClassifier.sampleRate)
-    audioInputManager.delegate = self
+    /// Initializes the AudioInputManager and starts recognizing on the output buffers.
+    private func startAudioRecognition() {
+        audioInputManager = AudioInputManager(sampleRate: soundClassifier.sampleRate)
+        audioInputManager.delegate = self
 
-    bufferSize = audioInputManager.bufferSize
+        bufferSize = audioInputManager.bufferSize
 
-    audioInputManager.checkPermissionsAndStartTappingMicrophone()
-  }
+        audioInputManager.checkPermissionsAndStartTappingMicrophone()
+    }
 
-  private func runModel(inputBuffer: [Int16]) {
-    soundClassifier.start(inputBuffer: inputBuffer)
-  }
+    private func runModel(inputBuffer: [Int16]) {
+        soundClassifier.start(inputBuffer: inputBuffer)
+    }
 }
 
 extension ViewController: AudioInputManagerDelegate {
-  func audioInputManagerDidFailToAchievePermission(_ audioInputManager: AudioInputManager) {
-    let alertController = UIAlertController(
-      title: "Microphone Permissions Denied",
-      message: "Microphone permissions have been denied for this app. You can change this by going to Settings",
-      preferredStyle: .alert
-    )
+    func audioInputManagerDidFailToAchievePermission(_ audioInputManager: AudioInputManager) {
+        let alertController = UIAlertController(
+            title: "Microphone Permissions Denied",
+            message: "Microphone permissions have been denied for this app. You can change this by going to Settings",
+            preferredStyle: .alert
+        )
 
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-      UIApplication.shared.open(
-        URL(string: UIApplication.openSettingsURLString)!,
-        options: [:],
-        completionHandler: nil
-      )
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            UIApplication.shared.open(
+                URL(string: UIApplication.openSettingsURLString)!,
+                options: [:],
+                completionHandler: nil
+            )
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+
+        present(alertController, animated: true, completion: nil)
     }
-    alertController.addAction(cancelAction)
-    alertController.addAction(settingsAction)
 
-    present(alertController, animated: true, completion: nil)
-  }
-
-  func audioInputManager(
-    _ audioInputManager: AudioInputManager,
-    didCaptureChannelData channelData: [Int16]
-  ) {
-    let sampleRate = soundClassifier.sampleRate
-    self.runModel(inputBuffer: Array(channelData[0..<sampleRate]))
-    self.runModel(inputBuffer: Array(channelData[sampleRate..<bufferSize]))
-  }
+    func audioInputManager(
+        _ audioInputManager: AudioInputManager,
+        didCaptureChannelData channelData: [Int16]
+    ) {
+        let sampleRate = soundClassifier.sampleRate
+        self.runModel(inputBuffer: Array(channelData[0..<sampleRate]))
+        self.runModel(inputBuffer: Array(channelData[sampleRate..<bufferSize]))
+    }
 }
 
 extension ViewController: SoundClassifierDelegate {
-  func soundClassifier(
-    _ soundClassifier: SoundClassifier,
-    didInterpreteProbabilities probabilities: [Float32]
-  ) {
-    self.probabilities = probabilities
-    self.indices = Array(0..<probabilities.count)
-    self.indices = self.indices.sorted(by: {
-          probabilities[$0] > probabilities[$1]
-      })
-    DispatchQueue.main.async {
-      self.tableView.reloadData()
+    func soundClassifier(
+        _ soundClassifier: SoundClassifier,
+        didInterpreteProbabilities probabilities: [Float32]
+    ) {
+        self.probabilities = probabilities
+        self.indices = Array(0..<probabilities.count)
+        self.indices = self.indices.sorted(by: {
+            probabilities[$0] > probabilities[$1]
+        })
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
-  }
 }
 
 // MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return probabilities.count
-  }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return probabilities.count
+    }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(
-      withIdentifier: "probabilityCell",
-      for: indexPath
-    ) as? ProbabilityTableViewCell else { return UITableViewCell() }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "probabilityCell",
+            for: indexPath
+        ) as? ProbabilityTableViewCell else { return UITableViewCell() }
 
-    cell.label.text = soundClassifier.labelNames[self.indices[indexPath.row]]
-      cell.progressView.setProgress(self.probabilities[self.indices[indexPath.row]], animated: false)
-    return cell
-  }
+        cell.label.text = soundClassifier.labelNames[self.indices[indexPath.row]]
+        cell.progressView.setProgress(self.probabilities[self.indices[indexPath.row]], animated: false)
+        return cell
+    }
 }
