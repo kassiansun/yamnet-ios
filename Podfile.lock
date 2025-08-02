@@ -1,14 +1,16 @@
 PODS:
-  - TensorFlowLiteC (2.13.0):
-    - TensorFlowLiteC/Core (= 2.13.0)
-  - TensorFlowLiteC/Core (2.13.0)
-  - TensorFlowLiteSwift (2.13.0):
-    - TensorFlowLiteSwift/Core (= 2.13.0)
-  - TensorFlowLiteSwift/Core (2.13.0):
-    - TensorFlowLiteC (= 2.13.0)
+  - TensorFlowLiteC (2.17.0):
+    - TensorFlowLiteC/Core (= 2.17.0)
+  - TensorFlowLiteC/Core (2.17.0)
+  - TensorFlowLiteSwift (2.17.0):
+    - TensorFlowLiteSwift/Core (= 2.17.0)
+  - TensorFlowLiteSwift/Core (2.17.0):
+    - TensorFlowLiteC (= 2.17.0)
+    - TensorFlowLiteSwift/Privacy (= 2.17.0)
+  - TensorFlowLiteSwift/Privacy (2.17.0)
 
 DEPENDENCIES:
-  - TensorFlowLiteSwift (~> 2.13.0)
+  - TensorFlowLiteSwift (~> 2.17.0)
 
 SPEC REPOS:
   trunk:
@@ -16,9 +18,9 @@ SPEC REPOS:
     - TensorFlowLiteSwift
 
 SPEC CHECKSUMS:
-  TensorFlowLiteC: ac3334fa9dbc90e4744b4497312a393fd02b5408
-  TensorFlowLiteSwift: 1d8320fbf292054eb50ef0b347a4b17a92b49731
+  TensorFlowLiteC: eac6d689a8d391d1b202dc59e3d9165ba64aaf73
+  TensorFlowLiteSwift: 723fe42222815e72490c79feeff05305530de393
 
-PODFILE CHECKSUM: e9727e139c6d97ff772f00855d8cc4d63f1eb2fb
+PODFILE CHECKSUM: 002bfe145e80294d8b023823c5b57cb00b06c561
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.15.2
